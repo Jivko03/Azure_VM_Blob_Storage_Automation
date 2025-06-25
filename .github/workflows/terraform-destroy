@@ -1,0 +1,19 @@
+# .github/workflows/delete-rg.yml
+name: Delete Azure Resource Group
+
+on:
+  workflow_dispatch:  # Run manually from GitHub UI
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Delete Resource Group
+      run: |
+        az group delete --name /* Name of resource group */ --yes 
